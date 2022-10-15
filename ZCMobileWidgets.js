@@ -52,6 +52,7 @@
  }
  
  function responseForCurrentLocationRequest(promiseId, latitude, longtitude) {
+     alert(hello);
      console.log(latitude, longtitude)
  }
  
