@@ -307,7 +307,7 @@ function Records(sdkBundle){
 		getCurrentLocation : function () {
 			var promiseID = Math.round(new Date().getTime() + '' + (Math.random() * Math.pow(10, 6)));
 			ZohoCreator.getCurrentLocation(promiseID);
-			funcStack[promiseId] = function(responseString, errordesc) {
+			funcStack[promiseID] = function(responseString, errordesc) {
 				if(errordesc) {
 					_self.reject(errordesc);
 				} else {
