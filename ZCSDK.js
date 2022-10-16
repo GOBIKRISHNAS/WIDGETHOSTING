@@ -305,15 +305,7 @@ function Records(sdkBundle){
         	return uploadFilePromise;
         },
 		getCurrentLocation : function () {
-			var promiseID = Math.round(new Date().getTime() + '' + (Math.random() * Math.pow(10, 6)));
-			ZohoCreator.getCurrentLocation(promiseID);
-			funcStack[promiseID] = function(responseString, errordesc) {
-				if(errordesc) {
-					_self.reject(errordesc);
-				} else {
-					_self.resolve(responseString);
-				}
-			}
+			return sdkBundle.appSDK._sendEvent('GET_LOCATION', undefined, true);
 		}
     }
 }
@@ -354,10 +346,4 @@ function Util(sdkBundle){
 	    	return sdkBundle.queryParams;
 	    }
     }
-}
-
-
-function responseForCurrentLocationRequest(promiseId, latitude, longtitude) {
-   alert("hello");
-    console.log(latitude, longtitude)
 }
