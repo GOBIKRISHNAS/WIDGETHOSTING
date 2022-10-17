@@ -344,6 +344,9 @@ function Util(sdkBundle){
 	    },
 	    getQueryParams : function() {
 	    	return sdkBundle.queryParams;
+	    },
+	    closePopup : function() {
+	        return sdkBundle.appSDK._sendEvent('CLOSE_POPUP');
 	    }
     }
 }
