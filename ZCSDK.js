@@ -345,8 +345,8 @@ function Util(sdkBundle){
 	    getQueryParams : function() {
 	    	return sdkBundle.queryParams;
 	    },
-	    closePopup : function() {
-	        return sdkBundle.appSDK._sendEvent('CLOSE_POPUP');
+	    executeScript : function(script) {
+	        return sdkBundle.appSDK._sendEvent('EXECUTE_SCRIPT', script);
 	    }
     }
 }
