@@ -304,9 +304,21 @@ function Records(sdkBundle){
         	});
         	return uploadFilePromise;
         },
-		getCurrentLocation : function () {
-			return sdkBundle.appSDK._sendEvent('GET_LOCATION', undefined, true);
-		}
+		getRecordCount : function (config) {
+        	if(isEmptyObject(config)) {
+        		return new Promise((resolve, reject) => {
+        			reject(`Improper Configuration..!!`);
+        		});
+        	}
+        	fillConfig(config);
+        	//scopeName: config.scope, envUrlFragment: config.envUrlFragment , appLinkName: config.appLinkName,
+        	var input = {
+				appLinkName		: config.appName,
+				viewLinkName	: config.reportName, 
+				criteria		: config.criteria,
+        	};
+        	return sdkBundle.appSDK._sendEvent('GET_COUNT', input, true);
+        },
     }
 }
 
@@ -345,8 +357,14 @@ function Util(sdkBundle){
 	    getQueryParams : function() {
 	    	return sdkBundle.queryParams;
 	    },
-	    executeScript : function(script) {
-	        return sdkBundle.appSDK._sendEvent('EXECUTE_SCRIPT', script);
-	    }
+		navigateParentURL(config) {
+			if(config && config.action) {
+				return sdkBundle.appSDK._sendEvent('PARENT_NAVIGATION', config, true);
+        	} else {
+				return new Promise((resolve, reject) => {
+        			reject(`Improper Configuration..!!`);
+        		});
+			}
+		}
     }
 }
